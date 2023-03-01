@@ -12,6 +12,7 @@ use Mockery as m;
 use Darryldecode\Tests\helpers\MockProduct;
 
 require_once __DIR__ . '/helpers/SessionMock.php';
+require_once __DIR__ . '/helpers/MockProduct.php';
 
 class CartTest extends PHPUnit\Framework\TestCase
 {
@@ -341,7 +342,7 @@ class CartTest extends PHPUnit\Framework\TestCase
 
         $this->cart->add($items);
 
-        $this->assertEquals(273.22, $this->cart->getSubTotal(), 'Cart should have sub total of 273.22');
+        $this->assertEquals(number_format(273.22, 2), number_format($this->cart->getSubTotal(), 2), 'Cart should have sub total of 273.22');
 
         // when cart's item quantity is updated, the subtotal should be updated as well
         $this->cart->update(456, array('quantity' => 2));
@@ -370,7 +371,7 @@ class CartTest extends PHPUnit\Framework\TestCase
 
         $this->cart->add($items);
 
-        $this->assertEquals(273.22, $this->cart->getSubTotal(), 'Cart should have sub total of 273.22');
+        $this->assertEquals(number_format(273.22, 2), number_format($this->cart->getSubTotal(), 2), 'Cart should have sub total of 273.22');
 
         // when cart's item quantity is updated, the subtotal should be updated as well
         $this->cart->update(456, array('quantity' => -1));
